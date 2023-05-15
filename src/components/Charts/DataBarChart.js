@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react'
+import { useSelector } from 'react-redux'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import zoomPlugin, { zoom } from 'chartjs-plugin-zoom';
-import { Bar } from "react-chartjs-2";
+} from 'chart.js'
+import zoomPlugin from 'chartjs-plugin-zoom'
+import { Bar } from 'react-chartjs-2'
 
 ChartJS.register(
   CategoryScale,
@@ -20,103 +20,100 @@ ChartJS.register(
   Tooltip,
   Legend,
   zoomPlugin
-);
+)
 
 export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Bar Chart",
+      position: 'top',
     },
     zoom: {
-        pan: {
-            enabled: true,
-            mode: 'x'
+      pan: {
+        enabled: true,
+        mode: 'x',
+      },
+      zoom: {
+        pinch: {
+          enabled: true, // Enable pinch zooming
         },
-        zoom: {
-            pinch: {
-                enabled: true       // Enable pinch zooming
-            },
-            wheel: {
-                enabled: true       // Enable wheel zooming
-            },
-            mode: 'x',
-        }
-    }
+        wheel: {
+          enabled: true, // Enable wheel zooming
+        },
+        mode: 'x',
+      },
+    },
   },
-};
+}
 
-//   const labels = [];
 export const labelsBarChart = (length) => {
-  const labels = [];
+  const labels = []
   for (let i = 1; i <= length; i++) {
-    labels.push(`group${i}`);
+    labels.push(`group${i}`)
   }
-  return labels;
-};
-export const dataBarChart = (data, currentTab = "productions") => {
-  const currentData = data[currentTab]?.details;
-  const labels = labelsBarChart(currentData.length);
-  if (currentTab === "productions") {
+  return labels
+}
+
+export const dataBarChart = (data, currentTab = 'productions') => {
+  const currentData = data[currentTab]?.details
+  const labels = labelsBarChart(currentData.length)
+  if (currentTab === 'productions') {
     return {
       labels: labels,
       datasets: [
         {
-          label: "Total",
+          label: 'Total',
           data: currentData?.map((element) => element.valeurs?.total),
-          backgroundColor: "rgba(255,206, 86, 1)",
+          backgroundColor: 'rgba(255,206, 86, 1)',
         },
         {
-          label: "Hydraulique",
+          label: 'Hydraulique',
           data: currentData?.map((element) => element.valeurs?.hydraulique),
-          backgroundColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: 'rgba(255, 99, 132, 1)',
         },
         {
-          label: "Eolien",
+          label: 'Eolien',
           data: currentData?.map((element) => element.valeurs?.eolien),
-          backgroundColor: "rgba(54, 162, 235, 1)",
+          backgroundColor: 'rgba(54, 162, 235, 1)',
         },
         {
-          label: "Solaire",
+          label: 'Solaire',
           data: currentData?.map((element) => element.valeurs?.solaire),
-          backgroundColor: "rgba(255, 255, 0, 1)",
+          backgroundColor: 'rgba(255, 255, 0, 1)',
         },
         {
-          label: "Thermique",
+          label: 'Thermique',
           data: currentData?.map((element) => element.valeurs?.thermique),
-          backgroundColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: 'rgba(75, 192, 192, 1)',
         },
         {
-          label: "Autres",
+          label: 'Autres',
           data: currentData?.map((element) => element.valeurs?.autres),
-          backgroundColor: "rgba(153, 102, 255, 1)",
+          backgroundColor: 'rgba(153, 102, 255, 1)',
         },
       ],
-    };
-  } else if (currentTab === "demands") {
+    }
+  } else if (currentTab === 'demands') {
     return {
       labels,
       datasets: [
         {
-          label: "Total",
+          label: 'Total',
           data: currentData?.map((element) => element.valeurs?.demandeTotal),
-          backgroundColor: "rgba(255,206, 86, 1)",
+          backgroundColor: 'rgba(255,206, 86, 1)',
         },
       ],
-    };
+    }
   }
-};
+}
 
 export default function DataBarChart(props) {
-  const productions = useSelector((state) => state.productions);
-  const demands = useSelector((state) => state.demands);
-  return demands.isLoadingCompleted ? (
-    <Bar options={options} data={dataBarChart(demands, "demands")} />
+  const productions = useSelector((state) => state.productions)
+  const demands = useSelector((state) => state.demands)
+  const currentData = props.currentTab === 'productions' ? productions : demands
+  return currentData.isLoadingCompleted ? (
+    <Bar options={options} data={dataBarChart(currentData, props.currentTab)} />
   ) : (
     <div>loading...</div>
-  );
+  )
 }
