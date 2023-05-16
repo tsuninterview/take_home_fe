@@ -45,5 +45,6 @@
     "react-table-v6": "^6.8.6",
     "redux": "^4.2.1",
     "tailwindcss": "^3.3.2"
-  }
+  },
+  "proxy": "http://localhost:9000"
 }

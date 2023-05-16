@@ -21,7 +21,7 @@ const productionReducer = (state = initialData, action) => {
 
 export const fetchProduction = () => {
   fetch(
-    `https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json`
+    `/api/production`
   )
     .then((res) => {
       if (res.ok) {

@@ -21,7 +21,7 @@ const demandReducer = (state = initialData, action) => {
 
 export const fetchDemand = () => {
   fetch(
-    `https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json`
+    `/api/demand`
   )
     .then((res) => {
       if (res.ok) {
@@ -30,9 +30,8 @@ export const fetchDemand = () => {
         throw new Error('invalid fetch')
       }
     })
-    .then((data) => {
-      store.dispatch(loadDemands(data))
-    })
+    .then((data) => store.dispatch(loadDemands(data))
+    )
     .catch((err) => console.log(err))
 }
 
