@@ -17,9 +17,11 @@ Data visualization app will now run on [localhost:3000](http://localhost:3000)
 ###### Production table
  *  Columns: Total, Hydraulique, Eolien, Solaire, Thermique, Autres, Date.
  *  Sort in ascending/descending order by columns.
+ *  Table pagination, default to 10.
 ###### Demand table
  *  Columns: Total, Date.
  *  Sort in ascending/descending order by columns.
+ * Table pagination, default to 10.
 
 #### Chart
 ###### Pie chart
