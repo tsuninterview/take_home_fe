@@ -13,6 +13,8 @@ Data visualization app will now run on [localhost:3000](http://localhost:3000)
 
 (Note: Please make sure back end server is running at seperate terminal, please visit [this link](https://github.com/tsuninterview/take_home_be/blob/master/README.md) to set up back end.)
 ## Features
+<img src="./docs/screenshot.png" alt="screenshot" width="600" height="370" />
+
 #### Table
 ###### Production table
  *  Columns: Total, Hydraulique, Eolien, Solaire, Thermique, Autres, Date.
