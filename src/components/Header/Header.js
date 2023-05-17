@@ -1,5 +1,9 @@
 import React from 'react'
 
+/**
+ * Header is responsible for displaying header of data visualization app
+ * which includes tabs to set current datasets to production or demand.
+ */
 export default function Header(props) {
   return (
     <div >

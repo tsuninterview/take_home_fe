@@ -5,9 +5,12 @@ const initialData = {
   demand: {},
   isLoadingCompleted: false,
 }
-
+// redux action for adding demand
 export const ADD_DEMAND = 'add demand'
 
+/**
+ * Primary reducer for demand in the redux store
+ */
 const demandReducer = (state = initialData, action) => {
   if (action.type === ADD_DEMAND) {
     return {
@@ -19,6 +22,9 @@ const demandReducer = (state = initialData, action) => {
   return state
 }
 
+/**
+ * fetch production data from api and update store
+ */
 export const fetchDemand = () => {
   fetch(
     `/api/demand`

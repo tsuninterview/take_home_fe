@@ -5,11 +5,12 @@ import { Pie } from 'react-chartjs-2'
 import { sumCategories, getLabelsChart } from '../Utils/countCategories'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
+// config for pie chart
 export const options = {
   responsive: true,
   maintainAspectRatio: false,
 }
-
+// set up data, background/border color, and labels for pie chart
 export const dataPieChart = (data, currentTab = 'production') => {
   const currentData = sumCategories(data, currentTab)
   const labels = getLabelsChart(currentTab)

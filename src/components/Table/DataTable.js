@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 export default function DataTable(props) {
   const production = useSelector((state) => state.production)
   const demand = useSelector((state) => state.demand)
+  // columns for demand
   const columnsDemand = [
     {
       Header: 'Total',
@@ -18,7 +19,7 @@ export default function DataTable(props) {
       Cell: (row) => <div class='text-center'>{row.value}</div>,
     },
   ]
-
+  // columns for production
   const columnsProduction = [
     {
       Header: 'Total',
@@ -56,7 +57,7 @@ export default function DataTable(props) {
       Cell: (row) => <div class='text-center'>{row.value}</div>,
     },
   ]
-
+  // data to be passed in demand table
   const dataDemand = () => {
     return demand.demand.details?.map((element) => {
       return {
@@ -65,7 +66,7 @@ export default function DataTable(props) {
       }
     })
   }
-
+  // data to be passed in production table
   const dataProduction = () => {
     return production.production.details?.map((element) => {
       return {
@@ -79,7 +80,7 @@ export default function DataTable(props) {
       }
     })
   }
-
+  // format date to yyyy-mm-dd
   const formatDate = (date) => {
     let formattedDate = new Date(date)
     return formattedDate.toISOString().substring(0, 10)

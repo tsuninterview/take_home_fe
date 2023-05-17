@@ -1,3 +1,7 @@
+/**
+ * returns the sum of each subcategory from current dataset for pie chart, 
+ * if there is no subcategories(ex. demand), returns the sum of total field.
+ */
 export const sumCategories = (data, currentTab='production') => {
   let res
   const categoriesData = data[currentTab]?.details.map(

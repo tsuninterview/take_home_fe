@@ -5,9 +5,12 @@ export const initialData = {
   production: {},
   isLoadingCompleted: false,
 }
-
+//redux action for adding production
 export const ADD_PRODUCTION = 'add production'
 
+/**
+ * Primary reducer for production in the redux store
+ */
 const productionReducer = (state = initialData, action) => {
   if (action.type === ADD_PRODUCTION) {
     return {
@@ -18,7 +21,9 @@ const productionReducer = (state = initialData, action) => {
   }
   return state
 }
-
+/**
+ * fetch production data from api and update store
+ */
 export const fetchProduction = () => {
   fetch(
     `/api/production`

@@ -21,7 +21,7 @@ ChartJS.register(
   Legend,
   zoomPlugin
 )
-
+// config for bar chart
 export const options = {
   responsive: true,
   plugins: {
@@ -46,7 +46,7 @@ export const options = {
   },
   maintainAspectRatio: false,
 }
-
+// group label names to be displayed on x-axis
 export const labelsBarChart = (length) => {
   const labels = []
   for (let i = 1; i <= length; i++) {
@@ -54,7 +54,7 @@ export const labelsBarChart = (length) => {
   }
   return labels
 }
-
+// set up data and labels/color for bar chart
 export const dataBarChart = (data, currentTab = 'production') => {
   const currentData = data[currentTab]?.details
   const labels = labelsBarChart(currentData.length)
