@@ -4,8 +4,8 @@ import 'react-table-6/react-table.css'
 import { useSelector } from 'react-redux'
 
 export default function DataTable(props) {
-  const productions = useSelector((state) => state.productions)
-  const demands = useSelector((state) => state.demands)
+  const production = useSelector((state) => state.production)
+  const demand = useSelector((state) => state.demand)
   const columnsDemand = [
     {
       Header: 'Total',
@@ -58,16 +58,16 @@ export default function DataTable(props) {
   ]
 
   const dataDemand = () => {
-    return demands.demands.details?.map((element) => {
+    return demand.demand.details?.map((element) => {
       return {
         total: element.valeurs?.demandeTotal,
-        date: element.date,
+        date: formatDate(element.date),
       }
     })
   }
 
   const dataProduction = () => {
-    return productions.productions.details?.map((element) => {
+    return production.production.details?.map((element) => {
       return {
         total: element.valeurs?.total,
         hydro: element.valeurs?.hydraulique,
@@ -86,9 +86,9 @@ export default function DataTable(props) {
   }
 
   const currentData =
-    props.currentTab === 'productions' ? dataProduction() : dataDemand()
+    props.currentTab === 'production' ? dataProduction() : dataDemand()
   const currentColumn =
-    props.currentTab === 'productions' ? columnsProduction : columnsDemand
+    props.currentTab === 'production' ? columnsProduction : columnsDemand
   return (
     <>
       <ReactTable

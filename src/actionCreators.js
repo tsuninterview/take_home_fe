@@ -1,16 +1,16 @@
-import { ADD_PRODUCTIONS } from './services/Production/production'
-import { ADD_DEMANDS } from './services/Demand/demand'
+import { ADD_PRODUCTION } from './services/Production/production'
+import { ADD_DEMAND } from './services/Demand/demand'
 
-export function loadProductions(data) {
+export function loadProduction(data) {
   return {
-    type: ADD_PRODUCTIONS,
-    productions: data,
+    type: ADD_PRODUCTION,
+    production: data,
   }
 }
 
-export function loadDemands(data) {
+export function loadDemand(data) {
   return {
-    type: ADD_DEMANDS,
-    demands: data,
+    type: ADD_DEMAND,
+    demand: data,
   }
 }

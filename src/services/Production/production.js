@@ -1,18 +1,18 @@
 import store from '../../store'
-import { loadProductions } from '../../actionCreators'
+import { loadProduction } from '../../actionCreators'
 
 export const initialData = {
-  productions: {},
+  production: {},
   isLoadingCompleted: false,
 }
 
-export const ADD_PRODUCTIONS = 'add productions'
+export const ADD_PRODUCTION = 'add production'
 
 const productionReducer = (state = initialData, action) => {
-  if (action.type === ADD_PRODUCTIONS) {
+  if (action.type === ADD_PRODUCTION) {
     return {
       ...state,
-      productions: action.productions,
+      production: action.production,
       isLoadingCompleted: true,
     }
   }
@@ -30,7 +30,7 @@ export const fetchProduction = () => {
         throw new Error('invalid fetch')
       }
     })
-    .then((data) => store.dispatch(loadProductions(data)))
+    .then((data) => store.dispatch(loadProduction(data)))
     .catch((err) => console.log(err))
 }
 

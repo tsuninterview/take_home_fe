@@ -5,13 +5,17 @@ import { Pie } from 'react-chartjs-2'
 import { sumCategories, getLabelsChart } from '../Utils/countCategories'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
+export const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+}
 
-export const dataPieChart = (data, currentTab = 'productions') => {
+export const dataPieChart = (data, currentTab = 'production') => {
   const currentData = sumCategories(data, currentTab)
   const labels = getLabelsChart(currentTab)
   const valueByCategories = Object.values(currentData)
   const backgroundColor =
-    currentTab === 'productions'
+    currentTab === 'production'
       ? [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -21,7 +25,7 @@ export const dataPieChart = (data, currentTab = 'productions') => {
         ]
       : ['rgba(255, 99, 132, 0.2)']
   const borderColor =
-    currentTab === 'productions'
+    currentTab === 'production'
       ? [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
@@ -34,7 +38,6 @@ export const dataPieChart = (data, currentTab = 'productions') => {
     labels,
     datasets: [
       {
-        label: 'power usage by subcategories',
         data: valueByCategories,
         backgroundColor,
         borderColor,
@@ -45,11 +48,11 @@ export const dataPieChart = (data, currentTab = 'productions') => {
 }
 
 export default function DataPieChart(props) {
-  const productions = useSelector((state) => state.productions)
-  const demands = useSelector((state) => state.demands)
-  const currentData = props.currentTab === 'productions' ? productions : demands
+  const production = useSelector((state) => state.production)
+  const demand = useSelector((state) => state.demand)
+  const currentData = props.currentTab === 'production' ? production : demand
   return currentData.isLoadingCompleted ? (
-    <Pie data={dataPieChart(currentData, props.currentTab)} />
+    <Pie options={options} height={'100%'} data={dataPieChart(currentData, props.currentTab)} />
   ) : (
     <div>Loading...</div>
   )

@@ -44,6 +44,7 @@ export const options = {
       },
     },
   },
+  maintainAspectRatio: false,
 }
 
 export const labelsBarChart = (length) => {
@@ -54,10 +55,10 @@ export const labelsBarChart = (length) => {
   return labels
 }
 
-export const dataBarChart = (data, currentTab = 'productions') => {
+export const dataBarChart = (data, currentTab = 'production') => {
   const currentData = data[currentTab]?.details
   const labels = labelsBarChart(currentData.length)
-  if (currentTab === 'productions') {
+  if (currentTab === 'production') {
     return {
       labels: labels,
       datasets: [
@@ -93,7 +94,7 @@ export const dataBarChart = (data, currentTab = 'productions') => {
         },
       ],
     }
-  } else if (currentTab === 'demands') {
+  } else if (currentTab === 'demand') {
     return {
       labels,
       datasets: [
@@ -108,11 +109,11 @@ export const dataBarChart = (data, currentTab = 'productions') => {
 }
 
 export default function DataBarChart(props) {
-  const productions = useSelector((state) => state.productions)
-  const demands = useSelector((state) => state.demands)
-  const currentData = props.currentTab === 'productions' ? productions : demands
+  const production = useSelector((state) => state.production)
+  const demand = useSelector((state) => state.demand)
+  const currentData = props.currentTab === 'production' ? production : demand
   return currentData.isLoadingCompleted ? (
-    <Bar options={options} data={dataBarChart(currentData, props.currentTab)} />
+    <Bar options={options} height={'400%'} data={dataBarChart(currentData, props.currentTab)} />
   ) : (
     <div>loading...</div>
   )

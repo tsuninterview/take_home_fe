@@ -1,15 +1,13 @@
-export const sumCategories = (data, currentTab) => {
+export const sumCategories = (data, currentTab='production') => {
   let res
   const categoriesData = data[currentTab]?.details.map(
     (element) => element.valeurs
   )
 
-  if (currentTab === 'productions') {
-    console.log(data.productions.details)
-    const categoriesData = data.productions.details.map(
+  if (currentTab === 'production') {
+    const categoriesData = data.production.details.map(
       (element) => element.valeurs
     )
-    console.log(categoriesData)
     res = categoriesData.reduce((acc, element) => ({
       hydraulique: element.hydraulique
         ? acc.hydraulique + element.hydraulique
@@ -21,7 +19,7 @@ export const sumCategories = (data, currentTab) => {
         : acc.thermique,
       autres: element.autres ? acc.autres + element.autres : acc.autres,
     }))
-  } else if (currentTab === 'demands') {
+  } else if (currentTab === 'demand') {
     res = categoriesData.reduce((acc, element) => ({
       demandeTotal: element.demandeTotal
         ? acc.demandeTotal + element.demandeTotal
@@ -34,10 +32,10 @@ export const sumCategories = (data, currentTab) => {
   return res
 }
 
-export const getLabelsChart = (currentTab = 'productions') => {
-  if (currentTab === 'productions') {
+export const getLabelsChart = (currentTab = 'production') => {
+  if (currentTab === 'production') {
     return ['Hydraulique', 'Eolien', 'Solaire', 'Thermique', 'Autres']
-  } else if (currentTab === 'demands') {
+  } else if (currentTab === 'demand') {
     return ['Total']
   }
 }
